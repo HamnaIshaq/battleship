@@ -4,6 +4,8 @@
   "description": "A webpack template to kick-start projects",
   "main": "index.js",
   "scripts": {
+    "test": "jest",
+    "watch": "jest --watch *.js",
     "build": "webpack",
     "start": "webpack serve --open",
     "predeploy": "npm run build",
