@@ -1,5 +1,9 @@
 const GameBoard = () => {
-  const createGameBoard = () => {
+  const gameBoard = createGameBoard();
+  let shipPlacement = [];
+  let recordShots = [];
+
+  function createGameBoard() {
     let board = [];
 
     for (let i = 0; i < 10; i++) {
@@ -9,13 +13,10 @@ const GameBoard = () => {
     }
 
     return board;
-  };
-
-  const gameBoard = createGameBoard();
-  let shipPlacement = [];
+  }
 
   // place ship on gameboard
-  const placeShip = (ship, start, end) => {
+  function placeShip(ship, start, end) {
     const shipPlaced = gameBoard.filter((square) => {
       if (
         start.toString() === square.toString() ||
@@ -24,30 +25,76 @@ const GameBoard = () => {
         return square;
       }
     });
+    const [startCell, endCell] = shipPlaced;
+
+    const shipLocation = shipPlacementOnBoard(startCell, endCell);
+
     shipPlacement.push({
       ship: ship,
-      coords: shipPlaced,
+      coords: shipLocation,
     });
     return shipPlaced;
-  };
+  }
+  // all ship cells from start position to end position
+  function shipPlacementOnBoard(startCell, endCell) {
+    const [startX, startY] = startCell;
+    const [endX, endY] = endCell;
+
+    const shipCellsArr = [];
+
+    if (startY !== endY) {
+      for (let y = startY; y <= endY; y++) {
+        shipCellsArr.push([startX, y]);
+      }
+      return shipCellsArr;
+    }
+    for (let x = startX; x <= endX; x++) {
+      shipCellsArr.push([x, startY]);
+    }
+    return shipCellsArr;
+  }
 
   // receive attack on gameboard
-  const receiveAttack = (coords) => {
+  function receiveAttack(attackCell) {
     let attackedSquare;
-    for (let i = 0; i < shipPlacement.length; i++) {
-      const shipCoords = shipPlacement[i].coords;
-      for (let j = 0; j < shipCoords.length; j++) {
-        if (shipCoords.toString() !== coords.toString()) {
-          attackedSquare = "missed";
+
+    shipPlacement.forEach((shipData) => {
+      shipData.coords.forEach((coords) => {
+        if (coords[0] === attackCell[0] && coords[1] === attackCell[1]) {
+          shipData.ship.hit();
+          attackedSquare = "ship was hit!";
         }
-      }
+      });
+    });
+    if (!attackedSquare) {
+      attackedSquare = "missed";
+      recordShots.push(attackCell);
     }
+
     return attackedSquare;
-  };
+  }
+
+  function allShipsHaveSunk() {
+    const totalShips = getTotalShipsOnBoard();
+    let totalSunkShips = 0;
+    shipPlacement.forEach((data) => {
+      if (data.ship.isSink()) {
+        totalSunkShips++;
+      }
+    });
+    if (totalSunkShips === totalShips) {
+      return "all ships have sunk";
+    }
+  }
+
+  function getTotalShipsOnBoard() {
+    return shipPlacement.length;
+  }
 
   return {
     placeShip,
     receiveAttack,
+    allShipsHaveSunk,
   };
 };
 
