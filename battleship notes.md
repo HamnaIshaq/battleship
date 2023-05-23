@@ -48,3 +48,36 @@ then place it (maybe?)
 - A hit on the board
   When a cell is hit, we want to see if a ship was present the ship will be hit
   if hit cell has no ship, then tell that ship was missed
+
+### Rough Plan for ship placement on gameboard
+
+when a ship is placed on the gameboard
+
+we will record the ship placement on the board as well as the ship info (length, has it sunk or not, has it been hit or not) and starting and ending coordinates
+
+so
+shipPlacement will have
+
+1. ship info
+2. gameboard coordinates (lets make it an array with all the coordinates start till end)
+
+when we are placing the ship, we are only taking the starting and ending coordinates
+as input so how will we determine the middle coordinates?
+
+we will first try and see which of the coordinate is static i.e. not changing
+then for the coordinate that is not static we will increment it until we reach the end coordinate
+
+e.g
+
+[0, 0] to [0, 4]
+
+first we determine the static coordinate
+it is x axis
+then we take the other coordinate i.e. y
+and increment it until we reach the end
+x = 0;
+x = x + 1
+mid-Coord = [0, 1]
+add the mid-Coord to array of gameboard coordinates
+is x equal to 4?
+No repeat the above process
