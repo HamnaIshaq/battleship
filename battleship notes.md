@@ -4,7 +4,7 @@
 
 - use the webpack template with jest added to it (DONE)
 - study about the pub sub design pattern and try to add this in this project
-- try to complete this project in this week (till 21-05-2023)
+- try to complete this project in this week
 - use factory function for this project (revise this as i havent used this alot)
 
 ## THINGS TO KEEP IN MIND
@@ -81,3 +81,57 @@ mid-Coord = [0, 1]
 add the mid-Coord to array of gameboard coordinates
 is x equal to 4?
 No repeat the above process
+
+### Player
+
+game is played with 1 human player and 1 computer player
+each will have their own gameboard and ships on their respective boards
+
+computer player:
+
+we will make the computer with Math random to get a random coordinate of gameboard
+
+we will also check if a computer move has already been executed, if it has, we will generate a new move
+
+human player:
+for now we will manually give the coords as input
+
+## rought plan for player
+
+for now there are 2 ways to make move by a player
+
+1. make a random move (math.random maybe)
+2. pass coordinate as input to a function
+
+the random will will be used by computer while the 2nd one by human player
+
+now, how to connect player to gamboard?
+
+maybe give the player gameboard when creating it?
+then when the player is going to make a move we can check if a ship is present at that move on gameboard. if move misses ship, we will same the missed shot coordinate in gameboard
+
+for computer move
+
+we first need to get a random coordinate to hit
+if the coordinate has already been hit once, get a new coordinate
+check if new coordinate has already been hit
+keep checking until we get a coordinate that has not been hit already
+
+### Game Module Logic To Add
+
+game module will contain the following
+
+1. make 2 players
+2. change player on each turn (maybe this goes here)
+3. use only methods from other modules (player, gameboard, ship)
+4. do not make a new function (If at any point you are tempted to write a new function inside the game loop, step back and figure out which class or module that function should belong to.)
+5. game ends when one players ships have all sunk.
+
+### DOM Module Logic To Add
+
+1. display each players board
+2. render them using information from gameboard class
+3. render gameboard
+4. take user input for attacking
+
+I think i will not add pub sub in this project as this will take additional time and I need to focus on the project requirement. Will look into this later
