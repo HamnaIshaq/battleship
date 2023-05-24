@@ -61,8 +61,12 @@ const GameBoard = () => {
     shipPlacement.forEach((shipData) => {
       shipData.coords.forEach((coords) => {
         if (coords[0] === attackCell[0] && coords[1] === attackCell[1]) {
+          recordShots.push(attackCell);
           shipData.ship.hit();
           attackedSquare = "ship was hit!";
+          if (shipData.ship.isSink()) {
+            attackedSquare = "ship has sunk!";
+          }
         }
       });
     });
@@ -95,6 +99,8 @@ const GameBoard = () => {
     placeShip,
     receiveAttack,
     allShipsHaveSunk,
+    recordShots,
+    gameBoard,
   };
 };
 
