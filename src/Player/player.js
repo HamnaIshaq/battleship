@@ -1,16 +1,17 @@
 import GameBoard from "../Gameboard/gameboard";
 
-const Player = () => {
+const Player = (name) => {
   let gameBoard = GameBoard();
+  let playerName = name;
 
-  function makeMoveOnBoard(coords) {
-    const move = gameBoard.receiveAttack(coords);
+  function makeMoveOnBoard(enemyGameboard, coords) {
+    const move = enemyGameboard.receiveAttack(coords);
     return move;
   }
 
-  function makeRandomMove() {
+  function makeRandomMove(enemyGameboard) {
     let randomMove = [randomNum(), randomNum()];
-    let newRandomMove = checkForDuplicateMove(randomMove);
+    let newRandomMove = checkForDuplicateMove(enemyGameboard, randomMove);
     let finalMove;
 
     if (
@@ -22,7 +23,7 @@ const Player = () => {
       finalMove = randomMove;
     }
 
-    return gameBoard.receiveAttack(finalMove);
+    return enemyGameboard.receiveAttack(finalMove);
   }
 
   function checkForDuplicateMove(move) {
@@ -32,7 +33,7 @@ const Player = () => {
 
     while (inValidMove) {
       let newMove = [];
-      gameBoard.recordShots.forEach((coords) => {
+      enemyGameboard.recordShots.forEach((coords) => {
         if (
           coords[0] === currentRandomMove[0] &&
           coords[1] === currentRandomMove[1]
@@ -61,6 +62,7 @@ const Player = () => {
     makeRandomMove,
     makeMoveOnBoard,
     gameBoard,
+    playerName,
   };
 };
 
