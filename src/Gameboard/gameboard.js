@@ -2,6 +2,7 @@ const GameBoard = () => {
   const gameBoard = createGameBoard();
   let shipPlacement = [];
   let recordShots = [];
+  let shipCoordsArr = [];
 
   function createGameBoard() {
     let board = [];
@@ -17,6 +18,12 @@ const GameBoard = () => {
 
   // place ship on gameboard
   function placeShip(ship, start, end) {
+    const shipOverLap = checkForShipOverlap(start, end);
+
+    if (shipOverLap) {
+      return "ERROR: cannot place ship on top of another ship!";
+    }
+
     const shipPlaced = gameBoard.filter((square) => {
       if (
         start.toString() === square.toString() ||
@@ -29,6 +36,8 @@ const GameBoard = () => {
 
     const shipLocation = shipPlacementOnBoard(startCell, endCell);
 
+    shipCoordsArr.push(shipLocation);
+
     shipPlacement.push({
       ship: ship,
       coords: shipLocation,
@@ -40,7 +49,7 @@ const GameBoard = () => {
     const [startX, startY] = startCell;
     const [endX, endY] = endCell;
 
-    const shipCellsArr = [];
+    let shipCellsArr = [];
 
     if (startY !== endY) {
       for (let y = startY; y <= endY; y++) {
@@ -51,11 +60,37 @@ const GameBoard = () => {
     for (let x = startX; x <= endX; x++) {
       shipCellsArr.push([x, startY]);
     }
+
     return shipCellsArr;
+  }
+
+  function shipCoords() {
+    return shipCoordsArr.flat();
+  }
+
+  function checkForShipOverlap(start, end) {
+    if (shipCoords()) {
+      const shipCells = shipCoords();
+      const shipOverLap = shipCells.some((cell) => {
+        if (
+          (cell[0] === start[0] && cell[1] === start[1]) ||
+          (cell[0] === end[0] && cell[1] === end[1])
+        ) {
+          return true;
+        }
+      });
+      return shipOverLap;
+    }
   }
 
   // receive attack on gameboard
   function receiveAttack(attackCell) {
+    let attackOnAlreadyHitCoord = checkForAttackOnSameCoordinate(attackCell);
+
+    if (attackOnAlreadyHitCoord) {
+      return "cannot attach twice on the same coordinate";
+    }
+
     let attackedSquare;
 
     shipPlacement.forEach((shipData) => {
@@ -76,6 +111,14 @@ const GameBoard = () => {
     }
 
     return attackedSquare;
+  }
+
+  function checkForAttackOnSameCoordinate(attackCell) {
+    const coordinate = recordShots.some(
+      (coordinate) =>
+        coordinate[0] === attackCell[0] && coordinate[1] === attackCell[1]
+    );
+    return coordinate;
   }
 
   function allShipsHaveSunk() {
@@ -101,6 +144,7 @@ const GameBoard = () => {
     allShipsHaveSunk,
     recordShots,
     gameBoard,
+    shipCoords,
   };
 };
 
