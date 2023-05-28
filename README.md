@@ -96,6 +96,8 @@ Add your files in the source folder and import them in the index.js file as this
 
 # Acknowledgements
 
+<a href="https://www.flaticon.com/free-icons/battleship" title="battleship icons">Battleship icons created by Flat-icons-com - Flaticon</a>
+
 - <a href="https://www.flaticon.com/free-icons/collage" title="collage icons">Collage icons created by Fathema Khanom - Flaticon</a>
 
 - <a href="https://www.learnhowtoprogram.com/intermediate-javascript/team-week/hosting-a-webpack-project-with-gh-pages">Hosting a webpack project with gh-pages</a>
