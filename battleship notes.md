@@ -127,6 +127,17 @@ game module will contain the following
 4. do not make a new function (If at any point you are tempted to write a new function inside the game loop, step back and figure out which class or module that function should belong to.)
 5. game ends when one players ships have all sunk.
 
+testing game module
+
+to test the game module, i need to define 2 players, place ships for each player on their gameboard
+then attack the coordinates by harcoding the coordinates for now to see if the functionality is working as we want it to
+
+noticed a bug when testing the functionality for game
+
+currently i have a player attacking its own gameboard and not the opposing player gameboard
+
+so
+
 ### DOM Module Logic To Add
 
 1. display each players board
