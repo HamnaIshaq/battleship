@@ -1,3 +1,64 @@
-body {
+#root {
+  height: 100vh;
+}
+
+.container {
+  display: flex;
+  justify-content: space-between;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.cell-row {
+  height: 40px;
+}
+
+.gameboard {
+  display: flex;
+  max-width: 400px;
+  flex-wrap: wrap;
+  margin: 0 auto;
+}
+
+button {
+  border: none;
+  background: transparent;
+}
+
+.cell {
+  outline: 1px solid #000000;
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  background-color: white;
+}
+
+.cell-ship {
   background-color: lightblue;
+}
+
+.cell:hover {
+  background-color: lightgreen;
+}
+
+.cell-hit {
+  background-color: red;
+}
+
+.cell-missed {
+  background-color: lightgray;
+}
+
+.cell.cell-missed:hover,
+.cell.cell-hit:hover {
+  cursor: context-menu;
+  background-color: lightgray;
+}
+
+.cell.cell-hit:hover {
+  background-color: red;
+}
+
+.text-align-center {
+  text-align: center;
 }
