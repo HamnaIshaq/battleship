@@ -1,12 +1,6 @@
 import "./style.css";
-
-function component() {
-  const element = document.createElement("div");
-
-  element.textContent = "Hello World";
-
-  return element;
-}
+import View from "./View/view";
 
 const root = document.querySelector("#root");
-root.appendChild(component());
+
+root.appendChild(View().gameView());
