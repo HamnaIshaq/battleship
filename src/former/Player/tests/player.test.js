@@ -1,8 +1,8 @@
-import Ship from "../../Ship/ship";
-import Player from "../player";
+import Ship from '../../Ship/ship';
+import Player from '../player';
 
-describe("Player tests", () => {
-  test("player misses the ship on player board after hitting cell [0, 5]", () => {
+describe('Player tests', () => {
+  test('player misses the ship on player board after hitting cell [0, 5]', () => {
     const playerHuman = Player();
     const computer = Player();
     const ship1 = Ship(2);
@@ -42,11 +42,11 @@ describe("Player tests", () => {
     ).toBe(endResShip2.toString());
 
     expect(playerHuman.makeMoveOnBoard(computer.gameBoard, [0, 5])).toBe(
-      "missed"
+      'missed'
     );
   });
 
-  test("player hits the ship on player board after hitting cell [0, 0]", () => {
+  test('player hits the ship on player board after hitting cell [0, 0]', () => {
     const playerHuman = Player();
     const computer = Player();
 
@@ -87,11 +87,11 @@ describe("Player tests", () => {
     ).toBe(endResShip2.toString());
 
     expect(playerHuman.makeMoveOnBoard(computer.gameBoard, [0, 0])).toBe(
-      "ship was hit!"
+      'ship was hit!'
     );
   });
 
-  test("player sinks the ship on player board after hitting cell [0, 0] and [0, 1]", () => {
+  test('player sinks the ship on player board after hitting cell [0, 0] and [0, 1]', () => {
     const playerHuman = Player();
     const computer = Player();
     const ship1 = Ship(2);
@@ -131,10 +131,10 @@ describe("Player tests", () => {
     ).toBe(endResShip2.toString());
 
     expect(playerHuman.makeMoveOnBoard(computer.gameBoard, [0, 0])).toBe(
-      "ship was hit!"
+      'ship was hit!'
     );
     expect(playerHuman.makeMoveOnBoard(computer.gameBoard, [0, 1])).toBe(
-      "ship has sunk!"
+      'ship has sunk!'
     );
   });
   /*
@@ -181,5 +181,5 @@ describe("Player tests", () => {
     expect(playerHuman.makeMoveOnBoard(computer.gameBoard, [0, 0])).toBe("ship was hit!");
     // below will give a random move. it will either hit the ship/ miss or sink the ship if called enough times
     //expect(playerHuman.makeRandomMove(computer.gameBoard)).toBe("missed");
-  });*/
+  }); */
 });

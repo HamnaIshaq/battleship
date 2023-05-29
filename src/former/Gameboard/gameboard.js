@@ -1,12 +1,12 @@
 const GameBoard = () => {
   const gameBoard = createGameBoard();
-  let shipPlacement = [];
-  let recordShots = [];
-  let shipCoordsArr = [];
-  let hitCoordsArr = [];
+  const shipPlacement = [];
+  const recordShots = [];
+  const shipCoordsArr = [];
+  const hitCoordsArr = [];
 
   function createGameBoard() {
-    let board = [];
+    const board = [];
 
     for (let i = 0; i < 10; i++) {
       for (let j = 0; j < 10; j++) {
@@ -19,12 +19,12 @@ const GameBoard = () => {
 
   // place ship on gameboard
   function placeShip(ship, start, end) {
-    /*const shipOverLap = checkForShipOverlap(start, end);
+    /* const shipOverLap = checkForShipOverlap(start, end);
     console.log(shipOverLap);
 
     if (shipOverLap) {
       return "ERROR: cannot place ship on top of another ship!";
-    }*/
+    } */
 
     const shipPlaced = gameBoard.filter((square) => {
       if (
@@ -41,7 +41,7 @@ const GameBoard = () => {
     shipCoordsArr.push(shipLocation);
 
     shipPlacement.push({
-      ship: ship,
+      ship,
       coords: shipLocation,
     });
     return shipPlaced;
@@ -51,7 +51,7 @@ const GameBoard = () => {
     const [startX, startY] = startCell;
     const [endX, endY] = endCell;
 
-    let shipCellsArr = [];
+    const shipCellsArr = [];
 
     if (startY !== endY) {
       for (let y = startY; y <= endY; y++) {
@@ -70,7 +70,7 @@ const GameBoard = () => {
     return shipCoordsArr.flat();
   }
 
-  /*function checkForShipOverlap(start, end) {
+  /* function checkForShipOverlap(start, end) {
     if (shipCoords()) {
       const shipCells = shipCoords();
       const shipOverLap = shipCells.some((cell) => {
@@ -83,14 +83,14 @@ const GameBoard = () => {
       });
       return shipOverLap;
     }
-  }*/
+  } */
 
   // receive attack on gameboard
   function receiveAttack(attackCell) {
-    let attackOnAlreadyHitCoord = checkForAttackOnSameCoordinate(attackCell);
+    const attackOnAlreadyHitCoord = checkForAttackOnSameCoordinate(attackCell);
 
     if (attackOnAlreadyHitCoord) {
-      return "cannot attach twice on the same coordinate";
+      return 'cannot attach twice on the same coordinate';
     }
 
     let attackedSquare;
@@ -98,17 +98,17 @@ const GameBoard = () => {
     shipPlacement.forEach((shipData) => {
       shipData.coords.forEach((coords) => {
         if (coords[0] === attackCell[0] && coords[1] === attackCell[1]) {
-          //recordShots.push(attackCell);
+          // recordShots.push(attackCell);
           shipData.ship.hit();
-          attackedSquare = "ship was hit!";
+          attackedSquare = 'ship was hit!';
           if (shipData.ship.isSink()) {
-            attackedSquare = "ship has sunk!";
+            attackedSquare = 'ship has sunk!';
           }
         }
       });
     });
     if (!attackedSquare) {
-      attackedSquare = "missed";
+      attackedSquare = 'missed';
       recordShots.push(attackCell);
     }
 
@@ -124,7 +124,7 @@ const GameBoard = () => {
   }
 
   function allShipsHaveSunk() {
-    //console.log(shipPlacement);
+    // console.log(shipPlacement);
     const totalShips = getTotalShipsOnBoard();
 
     let totalSunkShips = 0;
@@ -133,9 +133,9 @@ const GameBoard = () => {
         totalSunkShips++;
       }
     });
-    //console.log(totalShips, totalSunkShips);
+    // console.log(totalShips, totalSunkShips);
     if (totalSunkShips === totalShips) {
-      return "all ships have sunk";
+      return 'all ships have sunk';
     }
   }
 

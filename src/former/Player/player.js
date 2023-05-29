@@ -1,8 +1,8 @@
-import GameBoard from "../Gameboard/gameboard";
+import GameBoard from '../Gameboard/gameboard';
 
 const Player = (name) => {
-  let gameBoard = GameBoard();
-  let playerName = name;
+  const gameBoard = GameBoard();
+  const playerName = name;
 
   function makeMoveOnBoard(enemyGameboard, coords) {
     const move = enemyGameboard.receiveAttack(coords);
@@ -10,8 +10,8 @@ const Player = (name) => {
   }
 
   function makeRandomMove(enemyGameboard) {
-    let randomMove = [randomNum(), randomNum()];
-    let newRandomMove = checkForDuplicateMove(enemyGameboard, randomMove);
+    const randomMove = [randomNum(), randomNum()];
+    const newRandomMove = checkForDuplicateMove(enemyGameboard, randomMove);
     let finalMove;
 
     if (
@@ -45,7 +45,7 @@ const Player = (name) => {
         inValidMove = false;
         finalRandomMove = currentRandomMove;
       }
-      //duplicate move
+      // duplicate move
       if (newMove.length !== 0) {
         inValidMove = true;
         currentRandomMove = newMove;

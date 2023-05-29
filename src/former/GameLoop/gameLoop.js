@@ -1,11 +1,11 @@
-import Ship from "../Ship/ship";
-import Game from "../Game/game";
+import Ship from '../Ship/ship';
+import Game from '../Game/game';
 
 const GameStart = () => {
-  const newGame = Game("player1", "computer");
+  const newGame = Game('player1', 'computer');
 
-  const player1 = newGame.player1;
-  const player2 = newGame.player2;
+  const {player1} = newGame;
+  const {player2} = newGame;
 
   const ship1 = Ship(2);
   const coordShip1Start = [0, 0];

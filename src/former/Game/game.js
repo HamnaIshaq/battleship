@@ -1,10 +1,10 @@
-import Ship from "../Ship/ship";
-import Player from "../Player/player";
+import Ship from '../Ship/ship';
+import Player from '../Player/player';
 
 const Game = (player1Name, player2Name) => {
-  let player1 = Player(player1Name);
-  let player2 = Player(player2Name);
-  //let currentPlayer = player1;
+  const player1 = Player(player1Name);
+  const player2 = Player(player2Name);
+  // let currentPlayer = player1;
 
   placeShips();
 
@@ -14,21 +14,21 @@ const Game = (player1Name, player2Name) => {
 
   // end game when all ships have sunk
   function endGame() {
-    //console.log(player1.gameBoard);
-    if (player1.gameBoard.allShipsHaveSunk() === "all ships have sunk") {
+    // console.log(player1.gameBoard);
+    if (player1.gameBoard.allShipsHaveSunk() === 'all ships have sunk') {
       return `${player2.playerName} wins!`;
-    } else if (player2.gameBoard.allShipsHaveSunk() === "all ships have sunk") {
+    } if (player2.gameBoard.allShipsHaveSunk() === 'all ships have sunk') {
       return `${player1.playerName} wins`;
-    } else {
-      return "all ships not sunk yet!";
-    }
+    } 
+      return 'all ships not sunk yet!';
+    
   }
 
   function placeShips() {
     player1ShipPlacementTemp();
     player2ShipPlacementTemp();
 
-    //console.log(player1.shipCoords());
+    // console.log(player1.shipCoords());
   }
 
   function player1ShipPlacementTemp() {
@@ -47,7 +47,7 @@ const Game = (player1Name, player2Name) => {
 
     player1.gameBoard.placeShip(ship2, coordShip2Start, coordShip2End);
 
-    //player1.gameBoard.placeShip(ship3, coordShip3Start, coordShip3End);
+    // player1.gameBoard.placeShip(ship3, coordShip3Start, coordShip3End);
 
     return player1.gameBoard;
   }
@@ -67,7 +67,7 @@ const Game = (player1Name, player2Name) => {
 
     player2.gameBoard.placeShip(ship2, coordShip2Start, coordShip2End);
 
-    //player2.gameBoard.placeShip(ship3, coordShip3Start, coordShip3End);
+    // player2.gameBoard.placeShip(ship3, coordShip3Start, coordShip3End);
 
     return player2.gameBoard;
   }

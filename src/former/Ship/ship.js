@@ -8,7 +8,7 @@ const Ship = (length) => {
     // by default hit is 0, and hit is maximun eq to length of ship
     hitCount++;
     if (hitCount > len()) {
-      return "Ship cannot be hit more than its length";
+      return 'Ship cannot be hit more than its length';
     }
     return hitCount;
   }
@@ -22,7 +22,7 @@ const Ship = (length) => {
     const shipLength = len();
     const hitCounter = getCurrentHitCount();
 
-    return hitCounter === shipLength ? true : false;
+    return hitCounter === shipLength;
   }
 
   return {

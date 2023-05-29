@@ -1,14 +1,14 @@
-import Ship from "../../Ship/ship";
-import Game from "../game";
+import Ship from '../../Ship/ship';
+import Game from '../game';
 
-describe("Game tests", () => {
-  test("game round", () => {
-    const game = Game("player1", "computer");
+describe('Game tests', () => {
+  test('game round', () => {
+    const game = Game('player1', 'computer');
 
-    const player1 = game.player1;
-    const player2 = game.player2;
+    const {player1} = game;
+    const {player2} = game;
 
-    let currentPlayer = player1;
+    const currentPlayer = player1;
 
     const ship1 = Ship(2);
     const coordShip1Start = [0, 0];
@@ -61,7 +61,7 @@ describe("Game tests", () => {
     ).toBe(player2endResShip2.toString());
 
     expect(currentPlayer.makeMoveOnBoard(player2.gameBoard, [0, 5])).toBe(
-      "ship was hit!"
+      'ship was hit!'
     );
 
     /*
@@ -125,6 +125,6 @@ describe("Game tests", () => {
       "missed"
     );
 
-    expect(game.endGame()).toBe("player1 wins");*/
+    expect(game.endGame()).toBe("player1 wins"); */
   });
 });
