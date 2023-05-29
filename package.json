@@ -1,7 +1,7 @@
 {
-  "name": "webpack-template",
+  "name": "battleship",
   "version": "1.0.0",
-  "description": "A webpack template to kick-start projects",
+  "description": "A strategy type guessing game between 2 players where the goal is to sink all the enemy's ships",
   "main": "index.js",
   "scripts": {
     "test": "jest",
@@ -13,7 +13,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/{USERNAME}/{REPONAME}.git"
+    "url": "git+https://github.com/HamnaIshaq/battleship.git"
   },
   "author": "Hamna Ishaq",
   "license": "ISC",
@@ -29,6 +29,11 @@
     "style-loader": "^3.3.2",
     "webpack": "^5.80.0",
     "webpack-cli": "^5.0.1",
-    "webpack-dev-server": "^4.13.2"
+    "webpack-dev-server": "^4.13.2",
+    "eslint": "^8.41.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.8.0",
+    "eslint-plugin-import": "^2.27.5",
+    "prettier": "2.8.8"
   }
 }
