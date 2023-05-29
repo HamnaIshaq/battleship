@@ -146,3 +146,17 @@ so
 4. take user input for attacking
 
 I think i will not add pub sub in this project as this will take additional time and I need to focus on the project requirement. Will look into this later
+
+### 29-02-2023
+
+Made all the logic but there is an error that I cannot find that doesnt allow for the game to end. Couldnt find the error, so I was thinking to restart the project by documenting each step this time to fix the error and write code in a different way as well.
+
+I will tuck away all the previous logic in a folder called former to not loose it for now.
+
+Starting with the Ship module
+
+but before this I want to include eslint and prettier configuration in this project as well.
+
+- Made changes to the package.json file to include eslint and prettier as dev dependencies.
+- Included their related files
+- Changed the name, description and repository url in package.json file for battleship
