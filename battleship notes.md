@@ -212,3 +212,57 @@ Test the following
 Wrote logic for all above tests and tested them for each ship type/ class. All tests are being passed. So, I think ship module is done!
 
 Now moving on to the Gameboard module
+
+### Gameboard Module
+
+the gameboard is where we will place our ships and attack them
+
+so first think that we need is a board.
+
+From https://en.wikipedia.org/wiki/Battleship_(game)#Description we see that the usually a battleship board is of size 10x10 and the columns and rows are identified by letters and numbers respectively.
+
+- make a gameboard of size 10x10 [X]
+- place ships at specific coordinates by calling ship factory function
+- receiveAttach() --> takes pair of coordinates checks if it hits a ship, if it is a hit, send the hit to the correct ship or record missed shot
+- keep track of missed attacks to display them
+- report whether or not all ships have sunk
+
+#### Gameboard Tests
+
+1. test if a 10x10 grid is created successfully
+   for this, when I checked returned grid using toBe() in jest, it suggessted that If I need to check equality of 1 arrays, I use deep equality and use toStrictEqual()
+
+2. place ships on board
+
+for this we call ship factory, to get a ship
+then we take the first coordinate from which ship starts on board
+then we take direction as well to tell the direction of ship on board (horizontal / vertical)
+
+##### logic for placing ship on gameboard
+
+- take the starting position of ship
+- check which direction the ship is to be placed and get all ship coordinates
+
+  - if ship is placed horizontally, get the next coordinates by incrementing the y coord until we reach the ship length
+  - if ship is placed vertically, get the next coordinates by incrementing the x coord until we reach the ship length
+
+- if a ship is placed in a way that a portion of it ship gets out of the board, show a message to indicate that it is an invalid move and no such cell exists in the board.
+
+- after we get all the coordinates of a ship, we will make an object like below:
+
+shipOnBoard : {
+shipFactory: {
+name, size, hit, isSink
+},
+shipCellsArr: [
+[0,0], [0,1]
+]
+}
+
+then we can use the name of the ship which is unique on 1 board to attack it
+
+- for all the ship coordinates obtained, check if for any coordinate, another ship or a portion of another ship is present
+  - if it is, then we cannot place the ship there
+- if ship is placed at a new location, not already occupied by another ship, then place the ship
+
+- ship should have a reference to its object containing its name, hit, isSink methods to later use them
