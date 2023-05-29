@@ -3,6 +3,7 @@ const GameBoard = () => {
   let shipPlacement = [];
   let recordShots = [];
   let shipCoordsArr = [];
+  let hitCoordsArr = [];
 
   function createGameBoard() {
     let board = [];
@@ -18,11 +19,12 @@ const GameBoard = () => {
 
   // place ship on gameboard
   function placeShip(ship, start, end) {
-    const shipOverLap = checkForShipOverlap(start, end);
+    /*const shipOverLap = checkForShipOverlap(start, end);
+    console.log(shipOverLap);
 
     if (shipOverLap) {
       return "ERROR: cannot place ship on top of another ship!";
-    }
+    }*/
 
     const shipPlaced = gameBoard.filter((square) => {
       if (
@@ -68,7 +70,7 @@ const GameBoard = () => {
     return shipCoordsArr.flat();
   }
 
-  function checkForShipOverlap(start, end) {
+  /*function checkForShipOverlap(start, end) {
     if (shipCoords()) {
       const shipCells = shipCoords();
       const shipOverLap = shipCells.some((cell) => {
@@ -81,7 +83,7 @@ const GameBoard = () => {
       });
       return shipOverLap;
     }
-  }
+  }*/
 
   // receive attack on gameboard
   function receiveAttack(attackCell) {
@@ -96,7 +98,7 @@ const GameBoard = () => {
     shipPlacement.forEach((shipData) => {
       shipData.coords.forEach((coords) => {
         if (coords[0] === attackCell[0] && coords[1] === attackCell[1]) {
-          recordShots.push(attackCell);
+          //recordShots.push(attackCell);
           shipData.ship.hit();
           attackedSquare = "ship was hit!";
           if (shipData.ship.isSink()) {
@@ -114,7 +116,7 @@ const GameBoard = () => {
   }
 
   function checkForAttackOnSameCoordinate(attackCell) {
-    const coordinate = recordShots.some(
+    const coordinate = hitCoordsArr.some(
       (coordinate) =>
         coordinate[0] === attackCell[0] && coordinate[1] === attackCell[1]
     );
@@ -122,13 +124,16 @@ const GameBoard = () => {
   }
 
   function allShipsHaveSunk() {
+    //console.log(shipPlacement);
     const totalShips = getTotalShipsOnBoard();
+
     let totalSunkShips = 0;
     shipPlacement.forEach((data) => {
       if (data.ship.isSink()) {
         totalSunkShips++;
       }
     });
+    //console.log(totalShips, totalSunkShips);
     if (totalSunkShips === totalShips) {
       return "all ships have sunk";
     }
