@@ -153,10 +153,62 @@ Made all the logic but there is an error that I cannot find that doesnt allow fo
 
 I will tuck away all the previous logic in a folder called former to not loose it for now.
 
-Starting with the Ship module
-
-but before this I want to include eslint and prettier configuration in this project as well.
+but before making a new ship module, I want to include eslint and prettier configuration in this project as well.
 
 - Made changes to the package.json file to include eslint and prettier as dev dependencies.
 - Included their related files
 - Changed the name, description and repository url in package.json file for battleship
+
+I will write a script to run linter in package.json
+
+`"lint": "eslint --fix src/**/*.js"`
+
+Starting with the Ship module
+
+- From the battleship wikipedia, there are 5 different types of ships with different sizes as listed below:
+
+| No. | Class of Ship | Size |
+| --- | ------------- | ---- |
+| 1.  | Carrier       | 5    |
+| 2.  | Battleship    | 4    |
+| 3.  | Destroyer     | 3    |
+| 4.  | Submarine     | 3    |
+| 5.  | Patrol Boat   | 2    |
+
+### Ship Module logic
+
+Reading the project description it says:
+
+`sh
+‘ships’ will be objects that include their length, the number of times they’ve been hit and whether or not they’ve been sunk.
+
+Ships should have a hit() function that increases the number of ‘hits’ in your ship.
+
+isSunk() should be a function that calculates it based on their length and the number of ‘hits’.
+`
+
+So the ship module will return an object and will have these methods
+
+First, I will need to write a test for ship to check ship length and also give the ship a name to identify it easily
+
+ship object will have a
+
+- name,
+- size (length),
+- hit method,
+- isSink method
+
+#### Ship testing
+
+Test the following
+
+- for a ship defined, are we getting the size that we want?
+- is a ship hit once?
+- is a ship hit until its size has been reached?
+- we cannot hit a ship more than its size
+- ship sinks after it has been hit the same number of times as its size
+- does the ship sink? boolean (yes/no)
+
+Wrote logic for all above tests and tested them for each ship type/ class. All tests are being passed. So, I think ship module is done!
+
+Now moving on to the Gameboard module
