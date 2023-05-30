@@ -111,7 +111,8 @@ describe("Gameboard tests", () => {
     expect(board.grid()).toStrictEqual(expectedBoard);
   });
 
-  test("place a patrol boat of size 2 is placed horizontally on [0, 0] and [0, 1]", () => {
+  // Ship placement tests start here
+  test("A patrol boat of size 2 is placed horizontally on [0, 0] and [0, 1]", () => {
     const board = Gameboard();
 
     const expectedBoard = [
@@ -232,7 +233,7 @@ describe("Gameboard tests", () => {
     ).toStrictEqual(finalBoardPosition);
   });
 
-  test("place a patrol boat of size 2 is placed vertically on [0, 0] and [1, 0]", () => {
+  test("A patrol boat of size 2 is placed vertically on [0, 0] and [1, 0]", () => {
     const board = Gameboard();
 
     const expectedBoard = [
@@ -353,7 +354,7 @@ describe("Gameboard tests", () => {
     ).toStrictEqual(finalBoardPosition);
   });
 
-  test("place a submarine of size 3 is placed horizontally on [0, 0] and [0, 2]", () => {
+  test("A submarine of size 3 is placed horizontally on [0, 0] and [0, 2]", () => {
     const board = Gameboard();
 
     const expectedBoard = [
@@ -475,7 +476,7 @@ describe("Gameboard tests", () => {
     ).toStrictEqual(finalBoardPosition);
   });
 
-  test("place a submarine of size 3 is placed vertically on [0, 0] and [2, 0]", () => {
+  test("A submarine of size 3 is placed vertically on [0, 0] and [2, 0]", () => {
     const board = Gameboard();
 
     const expectedBoard = [
@@ -597,7 +598,7 @@ describe("Gameboard tests", () => {
     ).toStrictEqual(finalBoardPosition);
   });
 
-  test("place a battleship of size 4 is placed horizontally on [3, 2] and [3, 5]", () => {
+  test("A battleship of size 4 is placed horizontally on [3, 2] and [3, 5]", () => {
     const board = Gameboard();
 
     const expectedBoard = [
@@ -720,7 +721,7 @@ describe("Gameboard tests", () => {
     ).toStrictEqual(finalBoardPosition);
   });
 
-  test("place a battleship of size 4 horizontally on [3, 7] as starting position will give an invalid move as there is no cell [3, 10] on board", () => {
+  test("A battleship of size 4 is placed horizontally on [3, 7] as starting position will give an invalid move as there is no cell [3, 10] on board", () => {
     const board = Gameboard();
 
     const expectedBoard = [
@@ -837,7 +838,7 @@ describe("Gameboard tests", () => {
     ).toBe("[3,10] is not a valid move");
   });
 
-  test("place a battleship of size 4 vertically on [7, 9] as starting position will give an invalid move as there is no cell [10, 9] on board", () => {
+  test("A battleship of size 4 is placed vertically on [7, 9] as starting position will give an invalid move as there is no cell [10, 9] on board", () => {
     const board = Gameboard();
 
     const expectedBoard = [
@@ -954,7 +955,144 @@ describe("Gameboard tests", () => {
     ).toBe("[10,9] is not a valid move");
   });
 
-  test("place a patrol boat of size 2 horizontally on [0, 0] as starting position on board and attack cell [0, 0]", () => {
+  test("A patrol boat of size 2 is placed horizontally on [0, 0] as starting position on board. Also place a submarine of size 3 vertically on [0, 1]. An error will be given to show coordinate is already taken by another ship", () => {
+    const board = Gameboard();
+
+    const expectedBoard = [
+      [0, 0],
+      [0, 1],
+      [0, 2],
+      [0, 3],
+      [0, 4],
+      [0, 5],
+      [0, 6],
+      [0, 7],
+      [0, 8],
+      [0, 9],
+      [1, 0],
+      [1, 1],
+      [1, 2],
+      [1, 3],
+      [1, 4],
+      [1, 5],
+      [1, 6],
+      [1, 7],
+      [1, 8],
+      [1, 9],
+      [2, 0],
+      [2, 1],
+      [2, 2],
+      [2, 3],
+      [2, 4],
+      [2, 5],
+      [2, 6],
+      [2, 7],
+      [2, 8],
+      [2, 9],
+      [3, 0],
+      [3, 1],
+      [3, 2],
+      [3, 3],
+      [3, 4],
+      [3, 5],
+      [3, 6],
+      [3, 7],
+      [3, 8],
+      [3, 9],
+      [4, 0],
+      [4, 1],
+      [4, 2],
+      [4, 3],
+      [4, 4],
+      [4, 5],
+      [4, 6],
+      [4, 7],
+      [4, 8],
+      [4, 9],
+      [5, 0],
+      [5, 1],
+      [5, 2],
+      [5, 3],
+      [5, 4],
+      [5, 5],
+      [5, 6],
+      [5, 7],
+      [5, 8],
+      [5, 9],
+      [6, 0],
+      [6, 1],
+      [6, 2],
+      [6, 3],
+      [6, 4],
+      [6, 5],
+      [6, 6],
+      [6, 7],
+      [6, 8],
+      [6, 9],
+      [7, 0],
+      [7, 1],
+      [7, 2],
+      [7, 3],
+      [7, 4],
+      [7, 5],
+      [7, 6],
+      [7, 7],
+      [7, 8],
+      [7, 9],
+      [8, 0],
+      [8, 1],
+      [8, 2],
+      [8, 3],
+      [8, 4],
+      [8, 5],
+      [8, 6],
+      [8, 7],
+      [8, 8],
+      [8, 9],
+      [9, 0],
+      [9, 1],
+      [9, 2],
+      [9, 3],
+      [9, 4],
+      [9, 5],
+      [9, 6],
+      [9, 7],
+      [9, 8],
+      [9, 9],
+    ];
+
+    expect(board.grid()).toStrictEqual(expectedBoard);
+
+    const patrolBoat = Ship("patrol boat", 2);
+    const startingPosition = [0, 0];
+    const directionOnBoard = "horizontal";
+    const finalBoardPosition = [
+      [0, 0],
+      [0, 1],
+    ];
+
+    expect(
+      board.placeShip(patrolBoat, startingPosition, directionOnBoard)
+    ).toStrictEqual(finalBoardPosition);
+
+    const submarine = Ship("submarine", 3);
+    const startingPositionSubmarine = [0, 0];
+    const directionOnBoardSubmarine = "horizontal";
+
+    expect(
+      board.placeShip(
+        submarine,
+        startingPositionSubmarine,
+        directionOnBoardSubmarine
+      )
+    ).toBe(
+      "[0,0] is already occupied by another ship! invalid placement of ship"
+    );
+  });
+  // Ship placement tests end here
+
+  // Attack ship tests start here
+  test("A patrol boat of size 2 is placed horizontally on [0, 0] as starting position on board and cell [0, 0] is attacked which results in a hit on ship", () => {
     const board = Gameboard();
 
     const expectedBoard = [
@@ -1076,4 +1214,655 @@ describe("Gameboard tests", () => {
 
     expect(board.receiveAttack([0, 0])).toBe("hit");
   });
+
+  test("A patrol boat of size 2 is placed horizontally on [0, 0] as starting position on board and attack cell [0, 0] and [0, 1] will sink the ship", () => {
+    const board = Gameboard();
+
+    const expectedBoard = [
+      [0, 0],
+      [0, 1],
+      [0, 2],
+      [0, 3],
+      [0, 4],
+      [0, 5],
+      [0, 6],
+      [0, 7],
+      [0, 8],
+      [0, 9],
+      [1, 0],
+      [1, 1],
+      [1, 2],
+      [1, 3],
+      [1, 4],
+      [1, 5],
+      [1, 6],
+      [1, 7],
+      [1, 8],
+      [1, 9],
+      [2, 0],
+      [2, 1],
+      [2, 2],
+      [2, 3],
+      [2, 4],
+      [2, 5],
+      [2, 6],
+      [2, 7],
+      [2, 8],
+      [2, 9],
+      [3, 0],
+      [3, 1],
+      [3, 2],
+      [3, 3],
+      [3, 4],
+      [3, 5],
+      [3, 6],
+      [3, 7],
+      [3, 8],
+      [3, 9],
+      [4, 0],
+      [4, 1],
+      [4, 2],
+      [4, 3],
+      [4, 4],
+      [4, 5],
+      [4, 6],
+      [4, 7],
+      [4, 8],
+      [4, 9],
+      [5, 0],
+      [5, 1],
+      [5, 2],
+      [5, 3],
+      [5, 4],
+      [5, 5],
+      [5, 6],
+      [5, 7],
+      [5, 8],
+      [5, 9],
+      [6, 0],
+      [6, 1],
+      [6, 2],
+      [6, 3],
+      [6, 4],
+      [6, 5],
+      [6, 6],
+      [6, 7],
+      [6, 8],
+      [6, 9],
+      [7, 0],
+      [7, 1],
+      [7, 2],
+      [7, 3],
+      [7, 4],
+      [7, 5],
+      [7, 6],
+      [7, 7],
+      [7, 8],
+      [7, 9],
+      [8, 0],
+      [8, 1],
+      [8, 2],
+      [8, 3],
+      [8, 4],
+      [8, 5],
+      [8, 6],
+      [8, 7],
+      [8, 8],
+      [8, 9],
+      [9, 0],
+      [9, 1],
+      [9, 2],
+      [9, 3],
+      [9, 4],
+      [9, 5],
+      [9, 6],
+      [9, 7],
+      [9, 8],
+      [9, 9],
+    ];
+
+    expect(board.grid()).toStrictEqual(expectedBoard);
+
+    const patrolBoat = Ship("patrol boat", 2);
+    const startingPosition = [0, 0];
+    const directionOnBoard = "horizontal";
+    const finalBoardPosition = [
+      [0, 0],
+      [0, 1],
+    ];
+
+    expect(
+      board.placeShip(patrolBoat, startingPosition, directionOnBoard)
+    ).toStrictEqual(finalBoardPosition);
+
+    expect(board.receiveAttack([0, 0])).toBe("hit");
+    expect(board.receiveAttack([0, 1])).toBe("patrol boat has sunk!");
+  });
+
+  test("A patrol boat of size 2 is placed horizontally on [0, 0] as starting position on board and cell [0, 2] is attacked which misses ship", () => {
+    const board = Gameboard();
+
+    const expectedBoard = [
+      [0, 0],
+      [0, 1],
+      [0, 2],
+      [0, 3],
+      [0, 4],
+      [0, 5],
+      [0, 6],
+      [0, 7],
+      [0, 8],
+      [0, 9],
+      [1, 0],
+      [1, 1],
+      [1, 2],
+      [1, 3],
+      [1, 4],
+      [1, 5],
+      [1, 6],
+      [1, 7],
+      [1, 8],
+      [1, 9],
+      [2, 0],
+      [2, 1],
+      [2, 2],
+      [2, 3],
+      [2, 4],
+      [2, 5],
+      [2, 6],
+      [2, 7],
+      [2, 8],
+      [2, 9],
+      [3, 0],
+      [3, 1],
+      [3, 2],
+      [3, 3],
+      [3, 4],
+      [3, 5],
+      [3, 6],
+      [3, 7],
+      [3, 8],
+      [3, 9],
+      [4, 0],
+      [4, 1],
+      [4, 2],
+      [4, 3],
+      [4, 4],
+      [4, 5],
+      [4, 6],
+      [4, 7],
+      [4, 8],
+      [4, 9],
+      [5, 0],
+      [5, 1],
+      [5, 2],
+      [5, 3],
+      [5, 4],
+      [5, 5],
+      [5, 6],
+      [5, 7],
+      [5, 8],
+      [5, 9],
+      [6, 0],
+      [6, 1],
+      [6, 2],
+      [6, 3],
+      [6, 4],
+      [6, 5],
+      [6, 6],
+      [6, 7],
+      [6, 8],
+      [6, 9],
+      [7, 0],
+      [7, 1],
+      [7, 2],
+      [7, 3],
+      [7, 4],
+      [7, 5],
+      [7, 6],
+      [7, 7],
+      [7, 8],
+      [7, 9],
+      [8, 0],
+      [8, 1],
+      [8, 2],
+      [8, 3],
+      [8, 4],
+      [8, 5],
+      [8, 6],
+      [8, 7],
+      [8, 8],
+      [8, 9],
+      [9, 0],
+      [9, 1],
+      [9, 2],
+      [9, 3],
+      [9, 4],
+      [9, 5],
+      [9, 6],
+      [9, 7],
+      [9, 8],
+      [9, 9],
+    ];
+
+    expect(board.grid()).toStrictEqual(expectedBoard);
+
+    const patrolBoat = Ship("patrol boat", 2);
+    const startingPosition = [0, 0];
+    const directionOnBoard = "horizontal";
+    const finalBoardPosition = [
+      [0, 0],
+      [0, 1],
+    ];
+
+    expect(
+      board.placeShip(patrolBoat, startingPosition, directionOnBoard)
+    ).toStrictEqual(finalBoardPosition);
+
+    expect(board.receiveAttack([0, 2])).toBe("miss");
+  });
+
+  test("A patrol boat of size 2 is placed horizontally on [0, 0] as starting position on board and attack cell [0, 0] once. Then hitting [0, 0] again will indicate that it is an invalid move", () => {
+    const board = Gameboard();
+
+    const expectedBoard = [
+      [0, 0],
+      [0, 1],
+      [0, 2],
+      [0, 3],
+      [0, 4],
+      [0, 5],
+      [0, 6],
+      [0, 7],
+      [0, 8],
+      [0, 9],
+      [1, 0],
+      [1, 1],
+      [1, 2],
+      [1, 3],
+      [1, 4],
+      [1, 5],
+      [1, 6],
+      [1, 7],
+      [1, 8],
+      [1, 9],
+      [2, 0],
+      [2, 1],
+      [2, 2],
+      [2, 3],
+      [2, 4],
+      [2, 5],
+      [2, 6],
+      [2, 7],
+      [2, 8],
+      [2, 9],
+      [3, 0],
+      [3, 1],
+      [3, 2],
+      [3, 3],
+      [3, 4],
+      [3, 5],
+      [3, 6],
+      [3, 7],
+      [3, 8],
+      [3, 9],
+      [4, 0],
+      [4, 1],
+      [4, 2],
+      [4, 3],
+      [4, 4],
+      [4, 5],
+      [4, 6],
+      [4, 7],
+      [4, 8],
+      [4, 9],
+      [5, 0],
+      [5, 1],
+      [5, 2],
+      [5, 3],
+      [5, 4],
+      [5, 5],
+      [5, 6],
+      [5, 7],
+      [5, 8],
+      [5, 9],
+      [6, 0],
+      [6, 1],
+      [6, 2],
+      [6, 3],
+      [6, 4],
+      [6, 5],
+      [6, 6],
+      [6, 7],
+      [6, 8],
+      [6, 9],
+      [7, 0],
+      [7, 1],
+      [7, 2],
+      [7, 3],
+      [7, 4],
+      [7, 5],
+      [7, 6],
+      [7, 7],
+      [7, 8],
+      [7, 9],
+      [8, 0],
+      [8, 1],
+      [8, 2],
+      [8, 3],
+      [8, 4],
+      [8, 5],
+      [8, 6],
+      [8, 7],
+      [8, 8],
+      [8, 9],
+      [9, 0],
+      [9, 1],
+      [9, 2],
+      [9, 3],
+      [9, 4],
+      [9, 5],
+      [9, 6],
+      [9, 7],
+      [9, 8],
+      [9, 9],
+    ];
+
+    expect(board.grid()).toStrictEqual(expectedBoard);
+
+    const patrolBoat = Ship("patrol boat", 2);
+    const startingPosition = [0, 0];
+    const directionOnBoard = "horizontal";
+    const finalBoardPosition = [
+      [0, 0],
+      [0, 1],
+    ];
+
+    expect(
+      board.placeShip(patrolBoat, startingPosition, directionOnBoard)
+    ).toStrictEqual(finalBoardPosition);
+
+    expect(board.receiveAttack([0, 0])).toBe("hit");
+    expect(board.receiveAttack([0, 0])).toBe("cannot hit twice on [0,0]");
+  });
+  // Attack ship tests end here
+
+  // all ships sink tests start here
+  test("A patrol boat of size 2 is placed horizontally on [0, 0] as starting position on board and attacked on [0, 0] and [0, 1] to sink it and indicate all ships have sunk", () => {
+    const board = Gameboard();
+
+    const expectedBoard = [
+      [0, 0],
+      [0, 1],
+      [0, 2],
+      [0, 3],
+      [0, 4],
+      [0, 5],
+      [0, 6],
+      [0, 7],
+      [0, 8],
+      [0, 9],
+      [1, 0],
+      [1, 1],
+      [1, 2],
+      [1, 3],
+      [1, 4],
+      [1, 5],
+      [1, 6],
+      [1, 7],
+      [1, 8],
+      [1, 9],
+      [2, 0],
+      [2, 1],
+      [2, 2],
+      [2, 3],
+      [2, 4],
+      [2, 5],
+      [2, 6],
+      [2, 7],
+      [2, 8],
+      [2, 9],
+      [3, 0],
+      [3, 1],
+      [3, 2],
+      [3, 3],
+      [3, 4],
+      [3, 5],
+      [3, 6],
+      [3, 7],
+      [3, 8],
+      [3, 9],
+      [4, 0],
+      [4, 1],
+      [4, 2],
+      [4, 3],
+      [4, 4],
+      [4, 5],
+      [4, 6],
+      [4, 7],
+      [4, 8],
+      [4, 9],
+      [5, 0],
+      [5, 1],
+      [5, 2],
+      [5, 3],
+      [5, 4],
+      [5, 5],
+      [5, 6],
+      [5, 7],
+      [5, 8],
+      [5, 9],
+      [6, 0],
+      [6, 1],
+      [6, 2],
+      [6, 3],
+      [6, 4],
+      [6, 5],
+      [6, 6],
+      [6, 7],
+      [6, 8],
+      [6, 9],
+      [7, 0],
+      [7, 1],
+      [7, 2],
+      [7, 3],
+      [7, 4],
+      [7, 5],
+      [7, 6],
+      [7, 7],
+      [7, 8],
+      [7, 9],
+      [8, 0],
+      [8, 1],
+      [8, 2],
+      [8, 3],
+      [8, 4],
+      [8, 5],
+      [8, 6],
+      [8, 7],
+      [8, 8],
+      [8, 9],
+      [9, 0],
+      [9, 1],
+      [9, 2],
+      [9, 3],
+      [9, 4],
+      [9, 5],
+      [9, 6],
+      [9, 7],
+      [9, 8],
+      [9, 9],
+    ];
+
+    expect(board.grid()).toStrictEqual(expectedBoard);
+
+    const patrolBoat = Ship("patrol boat", 2);
+    const startingPosition = [0, 0];
+    const directionOnBoard = "horizontal";
+    const finalBoardPosition = [
+      [0, 0],
+      [0, 1],
+    ];
+
+    expect(
+      board.placeShip(patrolBoat, startingPosition, directionOnBoard)
+    ).toStrictEqual(finalBoardPosition);
+
+    expect(board.receiveAttack([0, 0])).toBe("hit");
+    expect(board.allShipsSunk()).toBe(false);
+    expect(board.receiveAttack([0, 1])).toBe("patrol boat has sunk!");
+    expect(board.allShipsSunk()).toBe(true);
+  });
+
+  test("A patrol boat of size 2 is placed horizontally on [0, 0] as starting position on board and a submarine of size 3 is placed horizontally on [2, 2] as a starting position and attacks are done on [0, 0], [0, 1], [0, 5] [2, 2], [2, 3] and [2, 4] to sink all ships and indicate all ships have sunk", () => {
+    const board = Gameboard();
+
+    const expectedBoard = [
+      [0, 0],
+      [0, 1],
+      [0, 2],
+      [0, 3],
+      [0, 4],
+      [0, 5],
+      [0, 6],
+      [0, 7],
+      [0, 8],
+      [0, 9],
+      [1, 0],
+      [1, 1],
+      [1, 2],
+      [1, 3],
+      [1, 4],
+      [1, 5],
+      [1, 6],
+      [1, 7],
+      [1, 8],
+      [1, 9],
+      [2, 0],
+      [2, 1],
+      [2, 2],
+      [2, 3],
+      [2, 4],
+      [2, 5],
+      [2, 6],
+      [2, 7],
+      [2, 8],
+      [2, 9],
+      [3, 0],
+      [3, 1],
+      [3, 2],
+      [3, 3],
+      [3, 4],
+      [3, 5],
+      [3, 6],
+      [3, 7],
+      [3, 8],
+      [3, 9],
+      [4, 0],
+      [4, 1],
+      [4, 2],
+      [4, 3],
+      [4, 4],
+      [4, 5],
+      [4, 6],
+      [4, 7],
+      [4, 8],
+      [4, 9],
+      [5, 0],
+      [5, 1],
+      [5, 2],
+      [5, 3],
+      [5, 4],
+      [5, 5],
+      [5, 6],
+      [5, 7],
+      [5, 8],
+      [5, 9],
+      [6, 0],
+      [6, 1],
+      [6, 2],
+      [6, 3],
+      [6, 4],
+      [6, 5],
+      [6, 6],
+      [6, 7],
+      [6, 8],
+      [6, 9],
+      [7, 0],
+      [7, 1],
+      [7, 2],
+      [7, 3],
+      [7, 4],
+      [7, 5],
+      [7, 6],
+      [7, 7],
+      [7, 8],
+      [7, 9],
+      [8, 0],
+      [8, 1],
+      [8, 2],
+      [8, 3],
+      [8, 4],
+      [8, 5],
+      [8, 6],
+      [8, 7],
+      [8, 8],
+      [8, 9],
+      [9, 0],
+      [9, 1],
+      [9, 2],
+      [9, 3],
+      [9, 4],
+      [9, 5],
+      [9, 6],
+      [9, 7],
+      [9, 8],
+      [9, 9],
+    ];
+
+    expect(board.grid()).toStrictEqual(expectedBoard);
+
+    const patrolBoat = Ship("patrol boat", 2);
+    const startingPosition = [0, 0];
+    const directionOnBoard = "horizontal";
+    const finalBoardPosition = [
+      [0, 0],
+      [0, 1],
+    ];
+
+    expect(
+      board.placeShip(patrolBoat, startingPosition, directionOnBoard)
+    ).toStrictEqual(finalBoardPosition);
+
+    const submarine = Ship("submarine", 3);
+    const startingPositionSubmarine = [2, 2];
+    const directionOnBoardSubmarine = "horizontal";
+    const finalBoardPositionSubmarine = [
+      [2, 2],
+      [2, 3],
+      [2, 4],
+    ];
+
+    expect(
+      board.placeShip(
+        submarine,
+        startingPositionSubmarine,
+        directionOnBoardSubmarine
+      )
+    ).toStrictEqual(finalBoardPositionSubmarine);
+
+    expect(board.receiveAttack([0, 0])).toBe("hit");
+    expect(board.allShipsSunk()).toBe(false);
+    expect(board.receiveAttack([0, 1])).toBe("patrol boat has sunk!");
+    expect(board.allShipsSunk()).toBe(false);
+    expect(board.receiveAttack([0, 5])).toBe("miss");
+    expect(board.allShipsSunk()).toBe(false);
+    expect(board.receiveAttack([2, 2])).toBe("hit");
+    expect(board.allShipsSunk()).toBe(false);
+    expect(board.receiveAttack([2, 3])).toBe("hit");
+    expect(board.allShipsSunk()).toBe(false);
+    expect(board.receiveAttack([2, 4])).toBe("submarine has sunk!");
+    expect(board.allShipsSunk()).toBe(true);
+  });
+  // all ships sink tests end here
 });
