@@ -162,6 +162,7 @@ const Gameboard = () => {
     placeShip,
     receiveAttack,
     allShipsSunk,
+    recordShotsOnBoard,
   };
 };
 
