@@ -28,6 +28,7 @@ const Ship = (name, shipLength) => {
     name,
     size,
     hit,
+    isSink,
   };
 
   return ship;
