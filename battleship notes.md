@@ -261,8 +261,27 @@ shipCellsArr: [
 
 then we can use the name of the ship which is unique on 1 board to attack it
 
+--- check if a coordinate is passed that doesnot exist on the board, then show error that this coordinate doesnot exist on the board an so cannot be attacked (or maybe not as while placing a ship we checked that we cannot place a ship on a cell that doesnot exist) (after thinking about this I wouldnt need this as its already checked)
+
 - for all the ship coordinates obtained, check if for any coordinate, another ship or a portion of another ship is present
   - if it is, then we cannot place the ship there
 - if ship is placed at a new location, not already occupied by another ship, then place the ship
 
+(added the above logic but kinda hacky in my opinion but it works so imma proceed to the next step, and try to research array traversing methods again to get a better handle on which array method to use here)
+
 - ship should have a reference to its object containing its name, hit, isSink methods to later use them
+  (made the object for this)
+
+##### Attack ship logic
+
+- hit a cell on board
+- if a ship is present on the hit cell, hit count of ship is incremented
+- if ship is not present on the hit cell, attack is registered as a missed attack
+- if a ship is hit the same number of times as its size/length, then the ship sinks
+- if a cell on board has already been hit once, it cannot be hit again
+- if all ships are sunken, report that all ships have sunk
+
+I think with this the gameboard module is covered entirely.
+Now moving onto the Player module
+
+#### Player module
