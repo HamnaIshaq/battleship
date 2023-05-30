@@ -285,3 +285,24 @@ I think with this the gameboard module is covered entirely.
 Now moving onto the Player module
 
 #### Player module
+
+from the module description, I get the following
+
+- each player takes turn attacking the enemy gameboard
+
+  - meaning there will be 2 players each with their own gameboard
+  - when 1 player has his turn, he will attack the enemy gameboard and then see whether the attack was a hit on ship/ miss/ or ship sank (all the nice logic written inside the gameboard module)
+
+- the enemy player will be a computer and will make random moves for attacking the baord
+  - the AI should make a valid move i.e. a cell present in the board
+  - the AI should also not repeat a move it has already made
+
+##### Making a player
+
+to make a player we will need the player name and when a player is created, an gameboard is also created for them
+
+then for the players created attack the enemy board using gameboard logic built previously
+
+for the AI, get a random number from 0 to 9 and get x and y coordinates
+
+also check if the ai move has already been used before by checking against enemy board recorded shots array
