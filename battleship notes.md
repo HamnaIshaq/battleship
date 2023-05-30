@@ -306,3 +306,27 @@ then for the players created attack the enemy board using gameboard logic built 
 for the AI, get a random number from 0 to 9 and get x and y coordinates
 
 also check if the ai move has already been used before by checking against enemy board recorded shots array
+
+#### Game Module
+
+After setting up all the logic for ship, gameboard and player, now its time to tie them all together and make a game module that does the following
+
+1. start a new game by creating players and their gameboards
+
+2. as there is no UI, for now, just populate the gameboard with ships on some predetermined coordinates
+
+3. change player turn
+
+4. create conditions so that game ends once one players ships have all been sunk
+
+try to step back and use methods from other objects (player, gameboard, ship) when appropriate
+
+##### Making game module
+
+first we will create a test to check if a game has been initiated by creating 2 players (gameboards are related to the players and they have already been tested when a player is created)
+
+then we will make a change player function inside Game module and test it
+
+then we will make end game function in Game module and test it
+
+I tested all the above and all tests are passed so onto the UI we go!!
