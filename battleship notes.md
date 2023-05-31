@@ -330,3 +330,26 @@ then we will make a change player function inside Game module and test it
 then we will make end game function in Game module and test it
 
 I tested all the above and all tests are passed so onto the UI we go!!
+
+#### MVC design
+
+- Model --> player, gameboard, ship
+- View --> UI, events like click etc.
+- Controller --> if view needs to connect with model, go through here and vice versa
+
+Reading this article on MVC (https://alistapart.com/article/javascript-mvc/#:~:text=MVC%20stands%20for%20Model%2DView,any%20user%20interaction%20(Controller).)
+
+#### UI module
+
+for the UI, we need to create the following:
+
+- create the gameboard for player 1 and player 2
+
+- add ships on boards (idk if this goes here maybe this goes on the game module itself) temperory (for now will implement a system to add ships on board later)
+  put this in game module so that when game module is initialized, we can call placement functions for player 1 and player 2 to place ships and then perform the different functionalities? this does seem appropriate will do this
+
+- render gameboard
+- take user input for attacking (click on cell)
+  - register ship hit, miss, sink (all the good stuff) from the previous modules
+- change player turn using Game module logic
+- end game after all ships for 1 players sink (again using the game module as its already defined there.)
