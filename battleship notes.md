@@ -353,3 +353,11 @@ for the UI, we need to create the following:
   - register ship hit, miss, sink (all the good stuff) from the previous modules
 - change player turn using Game module logic
 - end game after all ships for 1 players sink (again using the game module as its already defined there.)
+
+##### 01-06-2023
+
+I think I understand what MVC is.
+
+Now to use the business logic to connect to view through the controller
+
+First I will make a placeholder function in game module so that I can place ships
