@@ -103,3 +103,5 @@ Add your files in the source folder and import them in the index.js file as this
 - <a href="https://www.learnhowtoprogram.com/intermediate-javascript/team-week/hosting-a-webpack-project-with-gh-pages">Hosting a webpack project with gh-pages</a>
 
 - <a href="https://webpack.js.org/guides/">Webpack Guide</a>
+
+- <a href="https://www.flaticon.com/free-icons/wave" title="wave icons">Wave icons created by Yobany_MTOM - Flaticon</a>
