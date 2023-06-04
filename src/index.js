@@ -1,7 +1,4 @@
-/* import './style.css';
-import View from './View/view';
+import View from "./UI/view";
 
-const root = document.querySelector('#root');
-
-root.appendChild(View().gameView());
-*/
+const view = View();
+view.startGame();
