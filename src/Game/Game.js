@@ -1,3 +1,4 @@
+import Ship from "../Ship/Ship";
 import Player from "../Player/Player";
 
 const Game = (player1Name, player2Name) => {
@@ -27,11 +28,57 @@ const Game = (player1Name, player2Name) => {
     return false;
   }
 
+  function player1Ships() {
+    const player1PatrolBoat = Ship("patrol boat", 2);
+    const player1StartingPosition = [0, 0];
+    const player1DirectionOnBoard = "horizontal";
+
+    player1.board.placeShip(
+      player1PatrolBoat,
+      player1StartingPosition,
+      player1DirectionOnBoard
+    );
+
+    const player1Submarine = Ship("submarine", 3);
+    const player1StartingPositionSubmarine = [5, 0];
+    const player1DirectionOnBoardSubmarine = "vertical";
+
+    player1.board.placeShip(
+      player1Submarine,
+      player1StartingPositionSubmarine,
+      player1DirectionOnBoardSubmarine
+    );
+  }
+
+  function player2Ships() {
+    const player2PatrolBoat = Ship("patrol boat", 2);
+    const player2StartingPosition = [2, 0];
+    const player2DirectionOnBoard = "horizontal";
+
+    player2.board.placeShip(
+      player2PatrolBoat,
+      player2StartingPosition,
+      player2DirectionOnBoard
+    );
+
+    const player2Submarine = Ship("submarine", 3);
+    const player2StartingPositionSubmarine = [5, 3];
+    const player2DirectionOnBoardSubmarine = "vertical";
+
+    player2.board.placeShip(
+      player2Submarine,
+      player2StartingPositionSubmarine,
+      player2DirectionOnBoardSubmarine
+    );
+  }
+
   return {
     player1,
     player2,
     changePlayerTurn,
     endGame,
+    player1Ships,
+    player2Ships,
   };
 };
 
