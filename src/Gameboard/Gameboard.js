@@ -1,3 +1,5 @@
+import Ship from "../Ship/Ship";
+
 const Gameboard = () => {
   const shipsOnBoard = [];
   const recordShotsOnBoard = [];
@@ -40,6 +42,7 @@ const Gameboard = () => {
         }
       });
     });
+
     return shipOverlap;
   }
 
@@ -49,7 +52,6 @@ const Gameboard = () => {
 
     shipCells.push(startCell);
 
-    // checkForShipOverlap(startCell);
     if (direction === "horizontal") {
       let endY = startCell[1];
       for (let y = 0; y < shipSize - 1; y++) {
@@ -82,14 +84,23 @@ const Gameboard = () => {
   }
 
   function placeShip(ship, startingPosition, directionOnBoard) {
-    const shipCellsArr = getShipCellsOnBoard(
+    let shipCellsArr = "";
+
+    // do {
+
+    shipCellsArr = getShipCellsOnBoard(
       ship.size(),
       startingPosition,
       directionOnBoard
     );
+    // } while (typeof shipCellsArr === "string");
+
+    if (shipCellsArr.includes("not a valid move")) {
+      return "invalid move";
+    }
 
     // before placing it on board, check if any of the coordinates overlap with any of the previous ships placed of the board
-
+    // console.log(shipCellsOccupied);
     if (shipCellsOccupied.length !== 0) {
       let inValidCell;
 
@@ -163,6 +174,7 @@ const Gameboard = () => {
     receiveAttack,
     allShipsSunk,
     recordShotsOnBoard,
+    shipCellsOccupied,
   };
 };
 
