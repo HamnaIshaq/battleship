@@ -361,3 +361,5 @@ I think I understand what MVC is.
 Now to use the business logic to connect to view through the controller
 
 First I will make a placeholder function in game module so that I can place ships
+
+### View
