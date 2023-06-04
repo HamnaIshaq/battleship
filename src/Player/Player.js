@@ -1,3 +1,4 @@
+import Ship from "../Ship/Ship";
 import Gameboard from "../Gameboard/Gameboard";
 
 const Player = (playerName) => {
@@ -10,7 +11,7 @@ const Player = (playerName) => {
   }
 
   function randNum() {
-    return Math.floor(Math.random() * 10);
+    return Math.floor(Math.random() * 9);
   }
 
   function checkForDuplicateMove(enemy, move) {
@@ -18,7 +19,7 @@ const Player = (playerName) => {
 
     while (currentRandMove === move) {
       // eslint-disable-next-line no-loop-func
-      enemy.recordShotsOnBoard.forEach((shotCell) => {
+      enemy.board.recordShotsOnBoard.forEach((shotCell) => {
         if (shotCell[0] === move[0] && shotCell[1] === move[1]) {
           currentRandMove = [randNum(), randNum()];
         }
@@ -31,7 +32,7 @@ const Player = (playerName) => {
     const randomCell = [randNum(), randNum()];
     let newRandomCell = randomCell;
 
-    if (enemy.recordShotsOnBoard !== []) {
+    if (enemy.board.recordShotsOnBoard.length !== 0) {
       newRandomCell = checkForDuplicateMove(enemy, randomCell);
     }
 
@@ -43,8 +44,46 @@ const Player = (playerName) => {
     ) {
       finalMoveOnEnemyBoard = newRandomCell;
     }
+    console.log(finalMoveOnEnemyBoard);
 
-    return enemy.board.receiveAttack(finalMoveOnEnemyBoard);
+    return finalMoveOnEnemyBoard;
+  }
+
+  function randomPlacementForShips(board) {
+    const shipsArr = getShips();
+    console.log(shipsArr);
+    for (let i = 0; i < shipsArr.length; i++) {
+      let cell = [randNum(), randNum()];
+      const dir = getRandomShipDirection();
+
+      let placed = board.placeShip(shipsArr[i], cell, dir);
+
+      while (
+        placed.includes("invalid move") ||
+        placed.includes("invalid placement")
+      ) {
+        cell = [randNum(), randNum()];
+        placed = board.placeShip(shipsArr[i], cell, dir);
+      }
+    }
+  }
+
+  function getShips() {
+    const patrolBoat = Ship("patrol boat", 2);
+    const submarine = Ship("submarine", 3);
+    const destroyer = Ship("destroyer", 3);
+    const battleship = Ship("battleship", 4);
+    const carrier = Ship("carrier", 5);
+
+    return [patrolBoat, submarine, destroyer, battleship, carrier];
+  }
+
+  function getRandomShipDirection() {
+    const direction = ["vertical", "horizontal"];
+
+    const choice = Math.random().toFixed(1);
+    // console.log(choice < 0.5 ? direction[0] : direction[1]);
+    return choice < 0.5 ? direction[0] : direction[1];
   }
 
   return {
@@ -52,6 +91,7 @@ const Player = (playerName) => {
     board,
     attackEnemyBoard,
     AIMove,
+    randomPlacementForShips,
   };
 };
 
