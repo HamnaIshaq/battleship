@@ -2,22 +2,26 @@ import "../style.css";
 import Game from "../Game/Game"; // modal
 
 const View = () => {
-  const game = Game("player1", "CPU");
-  const { player1 } = game;
-  const { player2 } = game;
+  let game = Game("player1", "CPU");
+  let { player1 } = game;
+  let { player2 } = game;
   const enemy = player2;
   const currentPlayer = player1;
+  const gameStatus = document.querySelector(".game-status");
 
   function startGame() {
-    showPlayerSide(player1);
-    showPlayerSide(player2);
+    gameStatus.textContent = "";
+    makePlayerSideView(player1.name, player1.board.grid());
 
-    player1.randomPlacementForShips(player1.board);
-    placeShips(player1.name, player1.board.shipCellsOccupied);
+    const player1ShipsArr = game.player1Ships();
 
-    player2.randomPlacementForShips(player2.board);
+    // player1.randomPlacementForShips(player1.board);
+    placeShips(player1.name, player1ShipsArr);
 
-    placeShips(player2.name, player2.board.shipCellsOccupied);
+    makePlayerSideView(player2.name, player2.board.grid());
+    // player2.randomPlacementForShips(player2.board);
+    const player2ShipsArr = game.player2Ships();
+    placeShips(player2.name, player2ShipsArr);
   }
 
   function showPlayerSide(player) {
@@ -36,7 +40,6 @@ const View = () => {
     const cellY = parseInt(e.target.getAttribute("data-cell-y"));
 
     const attackResult = player2.board.receiveAttack([cellX, cellY]);
-    console.log("player1", attackResult);
 
     if (attackResult === "miss") {
       e.target.classList.add("cell-missed");
@@ -44,16 +47,22 @@ const View = () => {
       e.target.classList.add("cell-hit");
     } else {
       e.target.classList.add("cell-hit");
-      console.log(attackResult);
     }
 
     if (game.endGame() === `${player1.name} wins!`) {
+      gameStatus.textContent = "player1 wins!";
       console.log(`${player1.name} wins!`);
+
+      const newGameButton = document.createElement("button");
+      newGameButton.setAttribute("type", "button");
+      newGameButton.textContent = "Restart Game";
+
+      newGameButton.addEventListener("click", restartGame);
+
+      gameStatus.appendChild(newGameButton);
+
       return;
     }
-
-    // currentPlayer = game.changePlayerTurn();
-    // enemy = player1;
 
     AIMoveOnBoard();
   }
@@ -64,8 +73,9 @@ const View = () => {
       .querySelectorAll(".cell");
 
     const move = player2.AIMove(player1);
+
     const attackResult = player1.board.receiveAttack(move);
-    console.log("AI", attackResult);
+
     player1BoardUI.forEach((cell) => {
       const cellX = parseInt(cell.getAttribute("data-cell-x"));
       const cellY = parseInt(cell.getAttribute("data-cell-y"));
@@ -73,16 +83,18 @@ const View = () => {
       if (move[0] === cellX && move[1] === cellY) {
         if (attackResult === "miss") {
           cell.classList.add("cell-missed");
-        }
-
-        if (attackResult === "hit") {
+        } else if (attackResult === "hit") {
+          cell.classList.add("cell-hit");
+        } else {
           cell.classList.add("cell-hit");
         }
       }
     });
 
-    // currentPlayer = game.changePlayerTurn();
-    // enemy = player2;
+    if (game.endGame() === `${player2.name} wins!`) {
+      gameStatus.textContent = `${player2.name} wins!`;
+      console.log(`${player2.name} wins!`);
+    }
   }
 
   function makePlayerSideView(name, board) {
@@ -131,9 +143,21 @@ const View = () => {
 
         if (shipPresence) {
           cell.classList.add("cell-ship");
+          if (playerName === "CPU") {
+            cell.classList.add("hide-ship");
+          }
         }
       });
     });
+  }
+
+  function restartGame() {
+    game = Game("player1", "CPU");
+    player1 = game.player1;
+    player2 = game.player2;
+    const container = document.querySelector(".container");
+    container.innerHTML = "";
+    startGame();
   }
 
   return {
