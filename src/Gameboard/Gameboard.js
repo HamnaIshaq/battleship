@@ -1,15 +1,16 @@
 import Ship from "../Ship/Ship";
 
 const Gameboard = () => {
-  const shipsOnBoard = [];
-  const recordShotsOnBoard = [];
-  const missedShots = [];
-  const shipCellsOccupied = [];
-  let sinkShips = 0;
+  const shipsOnBoard = []; // ships with coord position on board
+  const recordShotsOnBoard = []; // enemy hits on board
+  const missedShots = []; // enemy shots missed on board
+  const shipCellsOccupied = []; // ship cells coods arr
+  let sinkShips = 0; // total number of ships that have sunk
+  const board = [];
 
+  // board
   function grid() {
     let x = 0;
-    const board = [];
     // eslint-disable-next-line no-plusplus
     for (let y = 0; x < 10; y++) {
       if (y === 10) {
@@ -22,6 +23,7 @@ const Gameboard = () => {
     return board;
   }
 
+  // check if a coordinate is present in board
   function checkForValidCellInGrid(cell) {
     const board = grid();
     let valid = false;
@@ -33,6 +35,7 @@ const Gameboard = () => {
     return valid;
   }
 
+  // check if a coordinate is overlapping with a ship coordinate
   function checkForShipOverlap(cell) {
     let shipOverlap;
     shipsOnBoard.forEach((ship) => {
@@ -45,7 +48,7 @@ const Gameboard = () => {
 
     return shipOverlap;
   }
-
+  // get ship cells from starting position until their length is reached
   function getShipCellsOnBoard(shipSize, startCell, direction) {
     const shipCells = [];
     let validCell = true;
@@ -79,28 +82,24 @@ const Gameboard = () => {
       }
     }
     return !validCell
-      ? `[${shipCells[shipCells.length - 1]}] is not a valid move`
+      ? `[${shipCells[shipCells.length - 1]}] is not a valid cell`
       : shipCells;
   }
 
+  // place ship on board
   function placeShip(ship, startingPosition, directionOnBoard) {
-    let shipCellsArr = "";
-
-    // do {
-
-    shipCellsArr = getShipCellsOnBoard(
+    const shipCellsArr = getShipCellsOnBoard(
       ship.size(),
       startingPosition,
       directionOnBoard
     );
-    // } while (typeof shipCellsArr === "string");
 
-    if (shipCellsArr.includes("not a valid move")) {
-      return "invalid move";
+    if (shipCellsArr.includes("not a valid cell")) {
+      return "invalid cell";
     }
 
     // before placing it on board, check if any of the coordinates overlap with any of the previous ships placed of the board
-    // console.log(shipCellsOccupied);
+
     if (shipCellsOccupied.length !== 0) {
       let inValidCell;
 
@@ -112,7 +111,7 @@ const Gameboard = () => {
         }
       }
       if (inValidCell) {
-        return `[${inValidCell}] is already occupied by another ship! invalid placement of ship`;
+        return "ERROR! overlap with another ship!";
       }
     }
 
@@ -127,6 +126,7 @@ const Gameboard = () => {
     return shipCellsArr;
   }
 
+  // check if a cell is being attacked twice
   function checkCellAttackedTwice(cell) {
     const duplicateAttack = recordShotsOnBoard.some(
       (recordedCell) =>
@@ -136,6 +136,7 @@ const Gameboard = () => {
     return duplicateAttack;
   }
 
+  // attach a cell; hit, miss or ship sinks
   function receiveAttack(cell) {
     // check if cell is attacked twice
     if (checkCellAttackedTwice(cell)) {
@@ -161,9 +162,11 @@ const Gameboard = () => {
       recordShotsOnBoard.push(cell);
       missedShots.push(cell);
     }
+
     return attackResult;
   }
 
+  // check if all ships on board have sunk
   function allShipsSunk() {
     return sinkShips === shipsOnBoard.length;
   }

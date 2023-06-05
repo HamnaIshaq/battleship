@@ -835,7 +835,7 @@ describe("Gameboard tests", () => {
 
     expect(
       board.placeShip(battleship, startingPosition, directionOnBoard)
-    ).toBe("[3,10] is not a valid move");
+    ).toBe("invalid cell");
   });
 
   test("A battleship of size 4 is placed vertically on [7, 9] as starting position will give an invalid move as there is no cell [10, 9] on board", () => {
@@ -952,7 +952,7 @@ describe("Gameboard tests", () => {
 
     expect(
       board.placeShip(battleship, startingPosition, directionOnBoard)
-    ).toBe("[10,9] is not a valid move");
+    ).toBe("invalid cell");
   });
 
   test("A patrol boat of size 2 is placed horizontally on [0, 0] as starting position on board. Also place a submarine of size 3 vertically on [0, 1]. An error will be given to show coordinate is already taken by another ship", () => {
@@ -1085,9 +1085,7 @@ describe("Gameboard tests", () => {
         startingPositionSubmarine,
         directionOnBoardSubmarine
       )
-    ).toBe(
-      "[0,0] is already occupied by another ship! invalid placement of ship"
-    );
+    ).toBe("ERROR! overlap with another ship!");
   });
   // Ship placement tests end here
 
