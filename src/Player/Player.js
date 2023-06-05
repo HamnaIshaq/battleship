@@ -16,14 +16,18 @@ const Player = (playerName) => {
 
   function checkForDuplicateMove(enemy, move) {
     let currentRandMove = move;
+    let duplicate = enemy.board.recordShotsOnBoard.some(
+      (shotCell) =>
+        shotCell[0] === currentRandMove[0] && shotCell[1] === currentRandMove[1]
+    );
 
-    while (currentRandMove === move) {
-      // eslint-disable-next-line no-loop-func
-      enemy.board.recordShotsOnBoard.forEach((shotCell) => {
-        if (shotCell[0] === move[0] && shotCell[1] === move[1]) {
-          currentRandMove = [randNum(), randNum()];
-        }
-      });
+    while (duplicate === true) {
+      currentRandMove = [randNum(), randNum()];
+      duplicate = enemy.board.recordShotsOnBoard.some(
+        (shotCell) =>
+          shotCell[0] === currentRandMove[0] &&
+          shotCell[1] === currentRandMove[1]
+      );
     }
     return currentRandMove;
   }
@@ -44,14 +48,13 @@ const Player = (playerName) => {
     ) {
       finalMoveOnEnemyBoard = newRandomCell;
     }
-    console.log(finalMoveOnEnemyBoard);
 
     return finalMoveOnEnemyBoard;
   }
 
   function randomPlacementForShips(board) {
     const shipsArr = getShips();
-    console.log(shipsArr);
+
     for (let i = 0; i < shipsArr.length; i++) {
       let cell = [randNum(), randNum()];
       const dir = getRandomShipDirection();
@@ -82,7 +85,6 @@ const Player = (playerName) => {
     const direction = ["vertical", "horizontal"];
 
     const choice = Math.random().toFixed(1);
-    // console.log(choice < 0.5 ? direction[0] : direction[1]);
     return choice < 0.5 ? direction[0] : direction[1];
   }
 
