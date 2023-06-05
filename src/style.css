@@ -20,10 +20,10 @@
   margin: 0 auto;
 }
 
-button {
+/*button {
   border: none;
   background: transparent;
-}
+}*/
 
 .cell {
   outline: 1px solid #000000;
@@ -44,6 +44,10 @@ button {
   background-color: lightgreen;
 }
 
+.hide-ship {
+  background-color: #fff;
+}
+
 .cell-missed {
   background-color: rgb(50, 169, 199);
 }
@@ -55,6 +59,10 @@ button {
 .cell.cell-hit:hover {
   background-color: red;
   cursor: auto;
+}
+
+.game-status {
+  text-align: center;
 }
 /*
 .cell-missed {
