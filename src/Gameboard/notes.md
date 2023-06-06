@@ -21,4 +21,7 @@ first get the all the ship cells using
 2. starting cell
 3. direction
 
-then check if the
+## AI ship placement
+
+1. invalid placement on board -> cell is not a valid cell on board
+2.
