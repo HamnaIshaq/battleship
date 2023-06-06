@@ -16,7 +16,6 @@ const View = () => {
     const player1ShipsArr = player1.randomPlacementForShips(player1.board);
     // game.player1Ships();
 
-    // player1.randomPlacementForShips(player1.board);
     placeShips(player1.name, player1ShipsArr);
 
     makePlayerSideView(player2.name, player2.board.grid());
