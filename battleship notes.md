@@ -363,3 +363,10 @@ Now to use the business logic to connect to view through the controller
 First I will make a placeholder function in game module so that I can place ships
 
 ### View
+
+### remaining tasks
+
+[x] place AI ships on random correctly (Also used random positioning for player 1 as well)
+[] take user input to place ships on board
+extra task
+[] make AI a little intelligent (no need to do this if the above are not implemented)
