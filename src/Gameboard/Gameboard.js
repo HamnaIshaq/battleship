@@ -38,14 +38,14 @@ const Gameboard = () => {
   // check if a coordinate is overlapping with a ship coordinate
   function checkForShipOverlap(cell) {
     let shipOverlap;
-    shipsOnBoard.forEach((ship) => {
-      shipOverlap = ship.shipCellsArr.some((shipCell) => {
+
+    shipCellsOccupied.forEach((singleShipCells) => {
+      singleShipCells.forEach((shipCell) => {
         if (shipCell[0] === cell[0] && shipCell[1] === cell[1]) {
-          return true;
+          shipOverlap = true;
         }
       });
     });
-
     return shipOverlap;
   }
   // get ship cells from starting position until their length is reached
@@ -73,7 +73,7 @@ const Gameboard = () => {
         endX += 1;
         const cell = [endX, startCell[1]];
         shipCells.push(cell);
-        shipCellsOccupied.push(cell);
+
         validCell = checkForValidCellInGrid(cell);
 
         if (!validCell) {
@@ -81,6 +81,9 @@ const Gameboard = () => {
         }
       }
     }
+
+    // return shipCells;
+
     return !validCell
       ? `[${shipCells[shipCells.length - 1]}] is not a valid cell`
       : shipCells;
@@ -102,10 +105,10 @@ const Gameboard = () => {
 
     if (shipCellsOccupied.length !== 0) {
       let inValidCell;
-
       for (let i = 0; i < shipCellsArr.length; i++) {
         const valid = checkForShipOverlap(shipCellsArr[i]);
         if (valid === true) {
+          console.log(valid);
           inValidCell = shipCellsArr[i];
           break;
         }
