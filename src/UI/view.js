@@ -13,14 +13,16 @@ const View = () => {
     gameStatus.textContent = "";
     makePlayerSideView(player1.name, player1.board.grid());
 
-    const player1ShipsArr = game.player1Ships();
+    const player1ShipsArr = player1.randomPlacementForShips(player1.board);
+    // game.player1Ships();
 
     // player1.randomPlacementForShips(player1.board);
     placeShips(player1.name, player1ShipsArr);
 
     makePlayerSideView(player2.name, player2.board.grid());
-    // player2.randomPlacementForShips(player2.board);
-    const player2ShipsArr = game.player2Ships();
+
+    const player2ShipsArr = player2.randomPlacementForShips(player2.board);
+
     placeShips(player2.name, player2ShipsArr);
   }
 
@@ -143,9 +145,9 @@ const View = () => {
 
         if (shipPresence) {
           cell.classList.add("cell-ship");
-          if (playerName === "CPU") {
+          /* if (playerName === "CPU") {
             cell.classList.add("hide-ship");
-          }
+          } */
         }
       });
     });
