@@ -54,21 +54,24 @@ const Player = (playerName) => {
 
   function randomPlacementForShips(board) {
     const shipsArr = getShips();
-
+    const finalShipArr = [];
     for (let i = 0; i < shipsArr.length; i++) {
       let cell = [randNum(), randNum()];
-      const dir = getRandomShipDirection();
+      let dir = getRandomShipDirection();
 
       let placed = board.placeShip(shipsArr[i], cell, dir);
 
-      while (
-        placed.includes("invalid move") ||
-        placed.includes("invalid placement")
-      ) {
+      while (placed.includes("invalid cell") || placed.includes("overlap")) {
         cell = [randNum(), randNum()];
+        dir = getRandomShipDirection();
         placed = board.placeShip(shipsArr[i], cell, dir);
       }
+
+      if (!placed.includes("invalid cell") && !placed.includes("overlap")) {
+        finalShipArr.push(placed);
+      }
     }
+    return finalShipArr;
   }
 
   function getShips() {
