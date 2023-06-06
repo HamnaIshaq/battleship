@@ -9,6 +9,14 @@
   margin: 0 auto;
 }
 
+.player-container {
+  margin: 0 auto;
+}
+
+.hide {
+  display: none;
+}
+
 .cell-row {
   height: 40px;
 }
@@ -18,6 +26,13 @@
   max-width: 430px;
   flex-wrap: wrap;
   margin: 0 auto;
+}
+
+.patrol-boat {
+  width: 80px;
+  height: 40px;
+  border: 1px solid #000;
+  background-color: #c07f1e;
 }
 
 /*button {
@@ -40,6 +55,14 @@
   cursor: pointer;
 }
 
+.enemy-cell.cell-ship {
+  background-color: #fff;
+}
+
+.cell.cell-hit {
+  background-color: red;
+}
+
 .enemy-cell:hover {
   background-color: lightgreen;
 }
@@ -48,11 +71,13 @@
   background-color: #fff;
 }
 
-.cell-missed {
+.cell-missed,
+.cell-missed:hover {
   background-color: rgb(50, 169, 199);
 }
 
-.cell-hit {
+.cell-hit,
+.cell-hit:hover {
   background-color: red;
 }
 
@@ -64,22 +89,3 @@
 .game-status {
   text-align: center;
 }
-/*
-.cell-missed {
-  background-color: lightgray;
-}
-
-.cell.cell-missed:hover,
-.cell.cell-hit:hover {
-  cursor: context-menu;
-  background-color: lightgray;
-}
-
-.cell.cell-hit:hover {
-  background-color: red;
-}
-
-.text-align-center {
-  text-align: center;
-}
-*/
