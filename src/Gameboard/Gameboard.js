@@ -181,6 +181,7 @@ const Gameboard = () => {
     allShipsSunk,
     recordShotsOnBoard,
     shipCellsOccupied,
+    shipsOnBoard,
   };
 };
 
